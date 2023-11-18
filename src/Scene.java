@@ -1,37 +1,60 @@
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
+
 public class Scene extends JFrame
 {
-    boolean m_bChange=false;
-    JButton b=null;
-    public Scene()
+    Container m_container = null;
+    public Scene(String str)
     {
-        setTitle("몰라");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500,500);
-        setLayout(new FlowLayout());
-        b = new JButton("Action");
-        b.setSize(100,200);
-        b.addActionListener(new MyMouseListener());
-        add(b);
-
-        setVisible(true);
+        super(str);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);    
+        m_container = getContentPane();   
     }
     public void Update()
-    {      
-        if(!m_bChange)
-        {
-            b.setText("액션");
-        }
-        else
-        {
-            b.setText("Action");
-        }
-        m_bChange=!m_bChange;
+    {
+
     }
     public void Render()
     {
         getContentPane().repaint();
+    }
+}
+class ButPanel extends JPanel
+{
+    public ButPanel()
+    {
+        GridLayout grid = new GridLayout(5, 2);
+        grid.setVgap(50);
+        grid.setHgap(20);
+        setBackground(Color.DARK_GRAY);
+        setLayout(grid);
+        // FlowLayout에서 텍스트 내용을 입력하고, 입력칸의 크기를 조정
+    }
+}
+class MainPanel extends JPanel
+{
+    public MainPanel()
+    {
+        setLayout(null);
+        setBackground(Color.WHITE);
+    }
+}
+class IOPanel extends JPanel
+{
+    public IOPanel()
+    {
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10,10));
+        setBackground(Color.LIGHT_GRAY);
+
+        JButton in = new JButton("INPUT");
+        in.addActionListener(new InputActionListener());
+            
+        add(new JLabel("           INPUT           "));
+        add(new TextField(15));
+        add(in);
+        add(new JLabel("           OUTPUT          "));
+        add(new TextField(15));
     }
 }
