@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -35,10 +34,18 @@ class ButPanel extends JPanel
 }
 class MainPanel extends JPanel
 {
+    Vec2 m_vFirstPos = new Vec2();
+    Vec2 m_vCurPos = new Vec2();
     public MainPanel()
     {
         setLayout(null);
         setBackground(Color.WHITE);
+    }
+    public void SetMousePos(Vec2 inFirst,Vec2 inCur){m_vFirstPos = inFirst; m_vCurPos = inCur;}
+    public void paintComponent(Graphics g)
+    {
+        g.setColor(Color.BLUE);
+        g.drawLine(m_vFirstPos.x,m_vFirstPos.y,m_vCurPos.x,m_vCurPos.y);
     }
 }
 class IOPanel extends JPanel

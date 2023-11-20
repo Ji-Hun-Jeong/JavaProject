@@ -8,7 +8,7 @@ class MyBtnListener implements ActionListener
         switch (btn.getText())
         {
             case "AND":
-            
+                
             case "OR":
 
             case "NAND":

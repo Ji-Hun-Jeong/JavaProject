@@ -23,4 +23,5 @@ public class SceneMgr
         m_curScene.Render();
     }
     public static SceneMgr GetInst(){return m_inst;}
+    public Scene GetCurScene(){return m_curScene;}
 }

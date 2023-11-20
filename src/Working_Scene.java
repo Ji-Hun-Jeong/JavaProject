@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.*;
 enum BUTTON_TYPE
 {
     BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, LINE, TABLE, END,
@@ -13,6 +14,11 @@ public class Working_Scene extends Scene
 {
     private JButton m_arrButton[] = new JButton[BUTTON_TYPE.END.ordinal()];
     private JPanel m_arrPanel[] = new JPanel[PANEL_TYPE.END.ordinal()];
+
+    private Vector<INPUTGate> m_vecInputGates = new Vector<INPUTGate>();
+    private Vector<OUTPUTGate> m_vecOutputGates = new Vector<OUTPUTGate>();
+    private Vector<Gate> m_vecGates = new Vector<Gate>();
+
     public Working_Scene()
     {
         super("논리회로 그리기");
@@ -21,6 +27,9 @@ public class Working_Scene extends Scene
         m_arrPanel[PANEL_TYPE.BUTTON.ordinal()] = new ButPanel();
         m_arrPanel[PANEL_TYPE.IO.ordinal()] = new IOPanel();
         m_arrPanel[PANEL_TYPE.MAIN.ordinal()] = new MainPanel();
+        MyMouseListener myMouseListener =new MyMouseListener();
+        m_arrPanel[PANEL_TYPE.MAIN.ordinal()].addMouseListener(myMouseListener);
+        m_arrPanel[PANEL_TYPE.MAIN.ordinal()].addMouseMotionListener(myMouseListener);
 
         m_container.add(m_arrPanel[PANEL_TYPE.BUTTON.ordinal()], BorderLayout.EAST);
         m_container.add(m_arrPanel[PANEL_TYPE.IO.ordinal()], BorderLayout.SOUTH);
@@ -46,6 +55,14 @@ public class Working_Scene extends Scene
         setSize(1000, 600);
         setVisible(true);
     }
+    
+    public JButton GetButtons(BUTTON_TYPE type){return m_arrButton[type.ordinal()];}
+    public JPanel GetPanels(PANEL_TYPE type){return m_arrPanel[type.ordinal()];}
+
+    public void PushInputGate(INPUTGate inGate){m_vecInputGates.add(inGate);}
+    public void PushOutputGate(OUTPUTGate inGate){m_vecOutputGates.add(inGate);}
+    public void PushGate(Gate inGate){m_vecGates.add(inGate);}
+
     public void Update()
     {
         // Todo

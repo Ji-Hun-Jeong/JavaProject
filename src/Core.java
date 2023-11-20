@@ -22,7 +22,7 @@ public class Core extends Thread
             try
             {
                 Progress();
-                sleep(10);
+                sleep(1);
             }
             catch(InterruptedException e)
             {
