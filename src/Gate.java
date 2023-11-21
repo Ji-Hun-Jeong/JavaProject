@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.*;
 class Gate
 {
@@ -9,10 +10,17 @@ class Gate
    protected int m_arrInput[]=new int[2];
    protected int m_iIdx=0;
 
+   protected Vec2 m_vPos = new Vec2();
+
    protected Vector<Integer> m_vecVertices=new Vector<Integer>();
    private OUTPUTGate m_outputGate=null;
 
    protected int Calculate(){return 0;}
+   public void SetPos(int x,int y){m_vPos.x=x;m_vPos.y=y;}
+   public void Render(Graphics g)
+   {
+        g.drawRect(m_vPos.x-20, m_vPos.y-20, 40, 40);
+   }
    public Gate(String inType){m_strType=inType;}
    public boolean Ready(){return 2 == m_iIdx;}
    public int GetNum(){return m_iNum;}
@@ -62,4 +70,15 @@ class OUTPUTGate
     {
         System.out.println(m_iResult);
     }
+}
+class Line
+{
+    public int leftX;
+    public int leftY;
+    public int rightX;
+    public int rightY;
+    public void Render(Graphics g)
+    {
+        g.drawLine(leftX,leftY,rightX,rightY);
+    }   
 }
