@@ -39,6 +39,6 @@ public class Working_Scene extends Scene
 
     public void Update()
     {
-        // Todo
+        ((MainPanel)m_arrPanel[PANEL_TYPE.MAIN.ordinal()]).Update();
     }
 }

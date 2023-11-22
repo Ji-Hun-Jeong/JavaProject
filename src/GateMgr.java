@@ -14,33 +14,7 @@ public class GateMgr
    public Vector<Gate> GetGateVector(){return m_vecGates;}
    public void Init()
    {
-      Gate andGate1 = new ANDGate();
-      Gate orGate1 = new ORGate();
-      Gate andGate2 = new ANDGate();
-      andGate1.Link(orGate1.GetNum());
-      andGate1.Link(andGate2.GetNum());
-      orGate1.Link(andGate2.GetNum());
-      m_vecGates.add(andGate1);
-      m_vecGates.add(orGate1);
-      m_vecGates.add(andGate2);
-
-      INPUTGate input1=new INPUTGate();
-      input1.SetNum(m_iNumOfInput++);
-      input1.SetStartGate(andGate1);
-      INPUTGate input2=new INPUTGate();
-      input2.SetNum(m_iNumOfInput++);
-      input2.SetStartGate(andGate1);
-      INPUTGate input3=new INPUTGate();
-      input3.SetNum(m_iNumOfInput++);
-      input3.SetStartGate(orGate1);
-
-      m_vecInputGates.add(input1);
-      m_vecInputGates.add(input2);
-      m_vecInputGates.add(input3);
-
-      OUTPUTGate outputGate = new OUTPUTGate();
-      m_vecOutputGates.add(outputGate);
-      andGate2.LinkOutput(outputGate);
+      
    }
    public void Update()
    {
