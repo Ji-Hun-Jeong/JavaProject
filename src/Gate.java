@@ -101,10 +101,12 @@ class ANDGate extends Gate
     {
         super(x, y);
     }
+    // 입력값이 없으면 생성되지 않음
 
     public int Calculate() 
     {
         return m_arrInput[0] & m_arrInput[1];
+        // 입력값이 같으면 1, 다르면 0 리턴
     }
 }
 
@@ -114,10 +116,154 @@ class ORGate extends Gate
     {
         super(x, y);
     }
+    // 입력값이 없으면 생성되지 않음
 
     public int Calculate() 
     {
         return m_arrInput[0] | m_arrInput[1];
+        // 입력값 둘 중 하나 이상 1이면 1 리턴
+    }
+}
+
+class NANDGate extends Gate
+{
+    public NANDGate(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch(m_arrInput[0] & m_arrInput[1])
+        {
+            case 0:
+                return 1;
+            case 1:
+                return 0;
+            default:
+                return 2;
+            // AND 게이트의 결과값을 뒤집어서 리턴
+        }
+    }
+}
+
+class NORGate extends Gate
+{
+    public NORGate(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch(m_arrInput[0] | m_arrInput[1])
+        {
+            case 0:
+                return 1;
+            case 1:
+                return 0;
+            default:
+                return 2;
+            // OR 게이트의 결과값을 뒤집어서 리턴
+        }
+    }
+}
+
+class XORGate extends Gate
+{
+    public XORGate(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch (m_arrInput[0] + m_arrInput[1]) 
+        {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            case 2:
+                return 0;
+            default:
+                return 2;
+            // 1이 한개일 때만 1 리턴
+        }
+    }
+}
+
+class XNORGate extends Gate
+{
+    public XNORGate(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch (m_arrInput[0] + m_arrInput[1]) 
+        {
+            case 0:
+                return 1;
+            case 1:
+                return 0;
+            case 2:
+                return 1;
+            default:
+                return 2;
+            // 1이 짝수개일 때만 1 리턴
+        }
+    }
+}
+
+class BUFFER extends Gate
+{
+    public BUFFER(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch (m_arrInput[0]) 
+        {
+            case 0:
+                return 0;
+            case 1:
+                return 1;
+            default:
+                return 2;
+            // 입력값 그대로 리턴
+        }
+    }
+}
+
+class INVERTER extends Gate
+{
+    public INVERTER(int x, int y)
+    {
+        super(x, y);
+    }
+    // 입력값이 없으면 생성되지 않음
+
+    public int Calculate()
+    {
+        switch (m_arrInput[0]) 
+        {
+            case 0:
+                return 1;
+            case 1:
+                return 0;
+            default:
+                return 2;
+            // 입력값을 뒤집어서 리턴
+        }
     }
 }
 

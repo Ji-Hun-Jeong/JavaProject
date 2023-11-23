@@ -20,6 +20,8 @@ public class ButPanel extends MyPanel
         m_arrButton[BUTTON_TYPE.XNOR.ordinal()] = new JButton(BUTTON_TYPE.XNOR.name());
         m_arrButton[BUTTON_TYPE.LINE.ordinal()] = new JButton(BUTTON_TYPE.LINE.name());
         m_arrButton[BUTTON_TYPE.CALCULATE.ordinal()] = new JButton(BUTTON_TYPE.CALCULATE.name());
+        m_arrButton[BUTTON_TYPE.CALCULATE.ordinal()].setBackground(Color.YELLOW);
+        m_arrButton[BUTTON_TYPE.LINE.ordinal()].setBackground(Color.CYAN);
         
         for(int i=0;i<BUTTON_TYPE.END.ordinal();++i)
         {

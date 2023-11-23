@@ -35,8 +35,20 @@ public class MainPanel extends MyPanel
         switch(btnType)
         {
             case BUFFER:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new BUFFER(m_vCurPos.x,m_vCurPos.y);
+                    PushGate(gate);  
+                    bChecked=true;
+                }
                 break;
             case INVERTER:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new INVERTER(m_vCurPos.x,m_vCurPos.y);
+                    PushGate(gate);  
+                    bChecked=true;
+                }
                 break;
             case AND:
                 if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
@@ -55,12 +67,36 @@ public class MainPanel extends MyPanel
                 }
                 break;
             case NAND:
-                break;
-            case XOR:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new NANDGate(m_vCurPos.x, m_vCurPos.y);
+                    PushGate(gate);
+                    bChecked=true;
+                }
                 break;
             case NOR:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new NORGate(m_vCurPos.x, m_vCurPos.y);
+                    PushGate(gate);
+                    bChecked=true;
+                }
+                break;
+            case XOR:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new XORGate(m_vCurPos.x,m_vCurPos.y);
+                    PushGate(gate);  
+                    bChecked=true;
+                }
                 break;
             case XNOR:
+                if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
+                {
+                    gate = new XNORGate(m_vCurPos.x,m_vCurPos.y);
+                    PushGate(gate);  
+                    bChecked=true;
+                }
                 break;
             case LINE:
                 if(m_eMouseType.equals(MOUSE_TYPE.RELEASED))
