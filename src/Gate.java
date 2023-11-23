@@ -27,6 +27,9 @@ public class Gate
     {
         m_vPos.x = x;
         m_vPos.y = y;
+        m_ioPort[0] = new Port(x, y, m_iWidth, 0);
+        m_ioPort[1] = new Port(x, y, m_iWidth, 1);
+        m_ioPort[2] = new Port(x, y, m_iWidth, 2);
     }
     public Port IsMouseOn(int x,int y)
     {
@@ -97,9 +100,6 @@ class ANDGate extends Gate
     public ANDGate(int x, int y) 
     {
         super(x, y);
-        m_ioPort[0] = new Port(x, y, m_iWidth, 0);
-        m_ioPort[1] = new Port(x, y, m_iWidth, 1);
-        m_ioPort[2] = new Port(x, y, m_iWidth, 2);
     }
 
     public int Calculate() 
@@ -113,9 +113,6 @@ class ORGate extends Gate
     public ORGate(int x, int y) 
     {
         super(x, y);
-        m_ioPort[0] = new Port(x, y, m_iWidth, 0);
-        m_ioPort[1] = new Port(x, y, m_iWidth, 1);
-        m_ioPort[2] = new Port(x, y, m_iWidth, 2);
     }
 
     public int Calculate() 
