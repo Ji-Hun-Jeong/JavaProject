@@ -1,17 +1,14 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-enum BUTTON_TYPE
-{
-    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, LINE, TABLE, END,
-}
+
 enum PANEL_TYPE
 {
     BUTTON, IO, MAIN, END,
 }
 public class Working_Scene extends Scene
 {
-    private JPanel m_arrPanel[] = new JPanel[PANEL_TYPE.END.ordinal()];
+    private MyPanel m_arrPanel[] = new MyPanel[PANEL_TYPE.END.ordinal()];
 
     public Working_Scene()
     {
@@ -39,6 +36,6 @@ public class Working_Scene extends Scene
 
     public void Update()
     {
-        ((MainPanel)m_arrPanel[PANEL_TYPE.MAIN.ordinal()]).Update();
+        m_arrPanel[PANEL_TYPE.MAIN.ordinal()].Update();
     }
 }

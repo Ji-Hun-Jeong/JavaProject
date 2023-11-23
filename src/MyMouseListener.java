@@ -35,6 +35,8 @@ public class MyMouseListener implements MouseListener, MouseMotionListener
     }
     public void mousePressed(MouseEvent e)
     {
+        if(MyBtnListener.GetInst().GetBtnType().equals(BUTTON_TYPE.END))
+            return;
         m_vFirstPos.x=e.getX();
         m_vFirstPos.y=e.getY();
         m_vCurPos.x=e.getX();
@@ -43,12 +45,16 @@ public class MyMouseListener implements MouseListener, MouseMotionListener
     }
     public void mouseReleased(MouseEvent e)
     {
+        if(MyBtnListener.GetInst().GetBtnType().equals(BUTTON_TYPE.END))
+            return;
         m_eMouseTYPE=MOUSE_TYPE.RELEASED;
         m_vCurPos.x=e.getX();
         m_vCurPos.y=e.getY();
     }
     public void mouseDragged(MouseEvent e)
     {
+        if(MyBtnListener.GetInst().GetBtnType().equals(BUTTON_TYPE.END))
+            return;
         m_vCurPos.x = e.getX();
         m_vCurPos.y = e.getY();
         m_eMouseTYPE = MOUSE_TYPE.DRAGGED;

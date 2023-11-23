@@ -7,8 +7,8 @@ public class GateMgr
    public static GateMgr GetInst(){return m_Inst;}
 
    private int m_iNumOfInput=0;
-   private Vector<INPUTGate> m_vecInputGates=new Vector<INPUTGate>();
-   private Vector<OUTPUTGate> m_vecOutputGates=new Vector<OUTPUTGate>();
+   private Vector<InputPort> m_vecInputGates=new Vector<InputPort>();
+   private Vector<OutputPort> m_vecOutputGates=new Vector<OutputPort>();
    private Vector<Gate> m_vecGates=new Vector<Gate>();
 
    public Vector<Gate> GetGateVector(){return m_vecGates;}
@@ -16,7 +16,7 @@ public class GateMgr
    {
       
    }
-   public void Update()
+   /*public void Update()
    {
       System.out.print("Input값 3개 입력 : ");
       int num[]=new int[3];
@@ -66,5 +66,5 @@ public class GateMgr
       {
          m_vecGates.get(i).Clear();
       }
-   }
+   }*/
 }

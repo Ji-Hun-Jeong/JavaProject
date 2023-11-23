@@ -1,8 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
-public class ButPanel extends JPanel
+public class ButPanel extends MyPanel
 {
     private JButton m_arrButton[] = new JButton[BUTTON_TYPE.END.ordinal()];
+    public void Update(){}
     public ButPanel()
     {
         GridLayout grid = new GridLayout(5, 2);
@@ -18,7 +19,7 @@ public class ButPanel extends JPanel
         m_arrButton[BUTTON_TYPE.NOR.ordinal()] = new JButton(BUTTON_TYPE.NOR.name());
         m_arrButton[BUTTON_TYPE.XNOR.ordinal()] = new JButton(BUTTON_TYPE.XNOR.name());
         m_arrButton[BUTTON_TYPE.LINE.ordinal()] = new JButton(BUTTON_TYPE.LINE.name());
-        m_arrButton[BUTTON_TYPE.TABLE.ordinal()] = new JButton(BUTTON_TYPE.TABLE.name());
+        m_arrButton[BUTTON_TYPE.CALCULATE.ordinal()] = new JButton(BUTTON_TYPE.CALCULATE.name());
         
         for(int i=0;i<BUTTON_TYPE.END.ordinal();++i)
         {

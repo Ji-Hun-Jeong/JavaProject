@@ -1,15 +1,17 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Vector;
-
 import javax.swing.JPanel;
-public class MainPanel extends JPanel
+
+public class MainPanel extends MyPanel
 {
     private Vec2 m_vFirstPos = new Vec2();
     private Vec2 m_vCurPos = new Vec2();
-    private Vector<INPUTGate> m_vecInputGates = new Vector<INPUTGate>();
-    private Vector<OUTPUTGate> m_vecOutputGates = new Vector<OUTPUTGate>();
+    private Vector<InputPort> m_vecInputPorts = new Vector<InputPort>();
+    private Vector<OutputPort> m_vecOutputPorts = new Vector<OutputPort>();
     private Vector<Gate> m_vecGates = new Vector<Gate>();
     private Vector<Line> m_vecLines = new Vector<Line>();
     private MOUSE_TYPE m_eMouseType = MOUSE_TYPE.END;
@@ -29,7 +31,6 @@ public class MainPanel extends JPanel
             return;
 
         Gate gate = null;
-        //System.out.println(m_eMouseTYPE);
         boolean bChecked=false;
         switch(btnType)
         {
@@ -98,7 +99,8 @@ public class MainPanel extends JPanel
                     }
                 }     
                 break;
-            case TABLE:
+            case CALCULATE:
+                Calculate();
                 break;
             default:
                 break;
@@ -126,8 +128,54 @@ public class MainPanel extends JPanel
             g.drawLine(m_vFirstPos.x,m_vFirstPos.y,m_vCurPos.x,m_vCurPos.y);
         }
     }
-    public void PushInputGate(INPUTGate inGate){m_vecInputGates.add(inGate);}
-    public void PushOutputGate(OUTPUTGate inGate){m_vecOutputGates.add(inGate);}
+    public void PushInputPort(InputPort inPort){m_vecInputPorts.add(inPort);}
+    public void PushOutputPort(OutputPort inPort){m_vecOutputPorts.add(inPort);}
     public void PushGate(Gate inGate){m_vecGates.add(inGate);}
     public void PushLine(Line inLine){m_vecLines.add(inLine);}
+    public void Calculate()
+    {
+        Queue<Integer> q = new LinkedList<Integer>();
+        for(int i=0;i<m_vecInputPorts.size();++i)
+        {
+            Gate startGate = m_vecInputPorts.get(i).GetStartGate();
+            startGate.AddInput(m_vecInputPorts.get(i).GetInput());
+            if(startGate.Ready())
+                q.add(startGate.GetNum());
+        }
+
+        while(!q.isEmpty())
+        {
+            int idx = q.poll();
+            Gate gate = m_vecGates.get(idx);
+            if(!gate.Ready())
+            {
+                q.add(idx);
+                continue;
+            }         
+            int result = gate.Calculate();
+            OutputPort outputPort=m_vecGates.get(idx).GetOutputPort();
+            if(outputPort!=null)
+            {
+                outputPort.SetResult(result);
+            }
+            else
+            {
+                for(int i=0;i<gate.GetIdxVec().size();++i)
+                {
+                    Gate adjGate = m_vecGates.get(gate.GetIdxVec().get(i));
+                    adjGate.AddInput(result);
+                    q.add(adjGate.GetNum());
+                }
+            }  
+        }
+        for(OutputPort outputPort:m_vecOutputPorts)
+        {
+            // 여따가 아웃풋 보이게 하는 기능
+            //System.out.println(outputPort.GetResult());
+        }
+        for(int i=0;i<m_vecGates.size();++i)
+        {
+            m_vecGates.get(i).Clear();
+        }
+    }
 }

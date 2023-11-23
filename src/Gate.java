@@ -1,62 +1,6 @@
 import java.awt.Graphics;
 import java.util.*;
 
-class Port 
-{
-    private int m_iNumOfInput = 0;
-    private int m_iOffsetX = 10;
-    private int m_iOffsetY = 8;
-    private Vec2 m_vPos = new Vec2();
-    private int m_iWidth = 10;
-    private int m_iHeight = 10;
-
-    public Port(int gateX, int gateY, int gateSizeX, int num) 
-    {
-        if (0 == num) 
-        {
-            m_vPos.x = gateX - gateSizeX / 2 + m_iOffsetX;
-            m_vPos.y = gateY + m_iOffsetY;
-        } 
-        else if (1 == num) 
-        {
-            m_vPos.x = gateX - gateSizeX / 2 + m_iOffsetX;
-            m_vPos.y = gateY - m_iOffsetY;
-        } 
-        else 
-        {
-            m_vPos.x = gateX + gateSizeX / 2 - m_iOffsetX;
-            m_vPos.y = gateY;
-        }
-    }
-    public Vec2 GetPos()
-    {
-        return m_vPos.Copy();
-    }
-    public void SetInput(int inInput) 
-    {
-        m_iNumOfInput = inInput;
-    }
-
-    public int GetInput() 
-    {
-        return m_iNumOfInput;
-    }
-
-    public void Render(Graphics g) 
-    {
-        g.drawRect(m_vPos.x - m_iWidth / 2, m_vPos.y - m_iHeight / 2, m_iWidth, m_iHeight);
-    }
-
-    public Port IsMouseOn(int x,int y)
-    {
-        if(m_vPos.x - m_iWidth / 2<=x&&x<=m_vPos.x + m_iWidth / 2&&m_vPos.y - m_iHeight / 2<=y&&y<=m_vPos.y + m_iHeight / 2)
-        {
-            return this;
-        }
-        return null;
-    }
-}
-
 public class Gate 
 {
     // 계산이 한번 끝나면 모든 input들 -1로 만들기
@@ -73,7 +17,7 @@ public class Gate
     protected Port m_ioPort[] = new Port[3];
 
     protected Vector<Integer> m_vecVertices = new Vector<Integer>();
-    private OUTPUTGate m_outputGate = null;
+    private OutputPort m_outputPort = null;
     protected int Calculate() 
     {
         return 0;
@@ -120,14 +64,14 @@ public class Gate
         m_vecVertices.add(vertexNum);
     }
 
-    public OUTPUTGate GetOutputGate() 
+    public OutputPort GetOutputPort() 
     {
-        return m_outputGate;
+        return m_outputPort;
     }
 
-    public void LinkOutput(OUTPUTGate outputGate) 
+    public void LinkOutPort(OutputPort outputPort) 
     {
-        m_outputGate = outputGate;
+        m_outputPort = outputPort;
     }
 
     public void AddInput(int input) 
@@ -177,47 +121,6 @@ class ORGate extends Gate
     public int Calculate() 
     {
         return m_arrInput[0] | m_arrInput[1];
-    }
-}
-
-class INPUTGate 
-{
-    private int m_iNum = 0;
-    private Gate m_startGate = null;
-
-    public void SetNum(int num) 
-    {
-        m_iNum = num;
-    }
-
-    public void SetStartGate(Gate startGate) 
-    {
-        m_startGate = startGate;
-    }
-
-    public Gate GetStartGate() 
-    {
-        return m_startGate;
-    }
-}
-
-class OUTPUTGate 
-{
-    private int m_iResult = 0;
-
-    public void SetResult(int result) 
-    {
-        m_iResult = result;
-    }
-
-    public int GetResult() 
-    {
-        return m_iResult;
-    }
-
-    public void ShowResult() 
-    {
-        System.out.println(m_iResult);
     }
 }
 

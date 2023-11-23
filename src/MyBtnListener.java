@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.event.*;
+enum BUTTON_TYPE
+{
+    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, LINE, CALCULATE, END,
+}
 public class MyBtnListener implements ActionListener
 {
     private static MyBtnListener m_inst=new MyBtnListener();
@@ -38,8 +42,8 @@ public class MyBtnListener implements ActionListener
             case "LINE":
                 m_eButtonType = BUTTON_TYPE.LINE;
                 break;
-            case "TABLE":
-                m_eButtonType = BUTTON_TYPE.TABLE;
+            case "CALCULATE":
+                m_eButtonType = BUTTON_TYPE.CALCULATE;
                 break;
             default:
                 m_eButtonType = BUTTON_TYPE.END;
