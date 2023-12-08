@@ -19,6 +19,7 @@ public class MainPanel extends MyPanel
     private Vector<OutputPort> m_vecOutputPorts = new Vector<OutputPort>();
     private Vector<Gate> m_vecGates = new Vector<Gate>();
     private Vector<Line> m_vecLines = new Vector<Line>();
+
     private AlphaComposite m_alphaChanel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f);
     public void SetMousePos(Vec2 inFirstPos,Vec2 inCurPos){m_vFirstPos=inFirstPos;m_vCurPos=inCurPos;}
     public MainPanel()
@@ -178,6 +179,7 @@ public class MainPanel extends MyPanel
     }
     public void paintComponent(Graphics g)
     {
+        super.paintComponent(g);
         g.setColor(Color.BLUE);
         Vec2 camera = Camera.GetInst().GetCameraPos();
 
