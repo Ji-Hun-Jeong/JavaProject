@@ -5,6 +5,7 @@ import java.util.*;
 public class InputPort extends Port
 {
     private Vector<Gate> m_vecStartGates = new Vector<Gate>();
+    private Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
     public InputPort(int x,int y)
     {
         super(x,y);
@@ -29,6 +30,7 @@ public class InputPort extends Port
         {
             startGate.LinkInputPort(onMousePort);
             m_vecStartGates.add(startGate);
+            m_vecPortTypes.add(onMousePort.GetPortType());
             return true;
         }
         return false;
@@ -37,6 +39,10 @@ public class InputPort extends Port
     public Vector<Gate> GetStartGateVec() 
     {
         return m_vecStartGates;
+    }
+    public Vector<PORT_TYPE> GetPortTypeVec()
+    {
+        return m_vecPortTypes;
     }
 
     public void Render(Graphics g)

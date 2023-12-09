@@ -21,6 +21,7 @@ abstract public class Gate
     protected Port m_ioPort[] = new Port[PORT_TYPE.END.ordinal()];
 
     protected Vector<Integer> m_vecVertices = new Vector<Integer>();
+    protected Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
     private OutputPort m_outputPort = null;
     abstract protected int Calculate();
 
@@ -114,6 +115,7 @@ abstract public class Gate
     public void Link(Gate gate, Port port) 
     {
         m_vecVertices.add(gate.GetNum());
+        m_vecPortTypes.add(port.GetPortType());
         gate.LinkInputPort(port);
     }
 
@@ -131,14 +133,12 @@ abstract public class Gate
         }
     }
 
-    public void AddInput(int input) 
+    public void AddInput(int input, PORT_TYPE inPortTYpe) 
     {
         if(Ready())
             return;
-        if(!m_ioPort[PORT_TYPE.INPUT1.ordinal()].Ready())
-            m_ioPort[PORT_TYPE.INPUT1.ordinal()].SetInput(input);
-        else if(!m_ioPort[PORT_TYPE.INPUT2.ordinal()].Ready())
-            m_ioPort[PORT_TYPE.INPUT2.ordinal()].SetInput(input);
+        if(!m_ioPort[inPortTYpe.ordinal()].Ready())
+            m_ioPort[inPortTYpe.ordinal()].SetInput(input);
     }
 
     public void Clear() 
@@ -153,6 +153,10 @@ abstract public class Gate
     public Vector<Integer> GetIdxVec() 
     {
         return m_vecVertices;
+    }
+    public Vector<PORT_TYPE> GetPortTypeVec() 
+    {
+        return m_vecPortTypes;
     }
 }
 
