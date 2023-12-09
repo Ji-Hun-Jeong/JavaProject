@@ -23,10 +23,10 @@ public class ButPanel extends MyPanel
         m_arrButton[BUTTON_TYPE.OUTPUT.ordinal()] = new JButton(BUTTON_TYPE.OUTPUT.name());
         m_arrButton[BUTTON_TYPE.CHANGE.ordinal()] = new JButton(BUTTON_TYPE.CHANGE.name());
         m_arrButton[BUTTON_TYPE.CALCULATE.ordinal()] = new JButton(BUTTON_TYPE.CALCULATE.name());
-        m_arrButton[BUTTON_TYPE.DELETE.ordinal()] = new JButton(BUTTON_TYPE.DELETE.name());
+        //m_arrButton[BUTTON_TYPE.DELETE.ordinal()] = new JButton(BUTTON_TYPE.DELETE.name());
         m_arrButton[BUTTON_TYPE.CLEAR.ordinal()] = new JButton(BUTTON_TYPE.CLEAR.name());
 
-        m_arrButton[BUTTON_TYPE.DELETE.ordinal()].setBackground(Color.YELLOW);
+        //m_arrButton[BUTTON_TYPE.DELETE.ordinal()].setBackground(Color.YELLOW);
         m_arrButton[BUTTON_TYPE.INPUT.ordinal()].setBackground(Color.YELLOW);
         m_arrButton[BUTTON_TYPE.OUTPUT.ordinal()].setBackground(Color.YELLOW);
         m_arrButton[BUTTON_TYPE.CLEAR.ordinal()].setBackground(Color.YELLOW);

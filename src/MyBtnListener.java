@@ -54,9 +54,9 @@ public class MyBtnListener implements ActionListener
             case "CHANGE":
                 m_eButtonType = BUTTON_TYPE.CHANGE;
                 break;
-            case "DELETE":
-                m_eButtonType = BUTTON_TYPE.DELETE;
-                break;
+            //case "DELETE":
+                //m_eButtonType = BUTTON_TYPE.DELETE;
+                //break;
             case "CLEAR":
                 m_eButtonType = BUTTON_TYPE.CLEAR;
                 break;
