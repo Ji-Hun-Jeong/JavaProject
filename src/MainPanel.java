@@ -21,10 +21,14 @@ public class MainPanel extends MyPanel
     private Vector<Line> m_vecLines = new Vector<Line>();
 
     private AlphaComposite m_alphaChanel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f);
+    private ImageIcon m_backGroundImageIcon = null;
+    private Image m_backGroundImage = null;
     public void SetMousePos(Vec2 inFirstPos,Vec2 inCurPos){m_vFirstPos=inFirstPos;m_vCurPos=inCurPos;}
     public MainPanel()
     {
         setLayout(null);
+        m_backGroundImageIcon = ResourceMgr.GetInst().GetImageIcon("BackGround");
+        m_backGroundImage = m_backGroundImageIcon.getImage();
     }
     public void FinalUpdate()
     {
@@ -180,7 +184,7 @@ public class MainPanel extends MyPanel
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.setColor(Color.BLUE);
+        g.drawImage(m_backGroundImage, 0, 0,null);
         Vec2 camera = Camera.GetInst().GetCameraPos();
 
         for(Line line : m_vecLines)
