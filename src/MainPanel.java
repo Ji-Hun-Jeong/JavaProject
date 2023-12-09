@@ -8,7 +8,7 @@ import javax.swing.*;
 
 enum BUTTON_TYPE
 {
-    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, CALCULATE, DELETE, LINE, INPUT, OUTPUT, CHANGE, CLEAR, END,
+    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, CALCULATE, LINE, INPUT, OUTPUT, CHANGE, CLEAR, END,
 }
 
 public class MainPanel extends MyPanel
@@ -165,8 +165,8 @@ public class MainPanel extends MyPanel
                     bChecked=true;
                 }
                 break;
-            case DELETE:
-                break;
+            //case DELETE:
+                //break;
             case CLEAR:
                 Clear();
                 break;
