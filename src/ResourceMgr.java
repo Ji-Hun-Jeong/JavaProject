@@ -30,6 +30,7 @@ public class ResourceMgr
         LoadImage("Result1_Red","./Logic Gate/Result1_Red.png");
         LoadImage("Port","./Logic Gate/Port.png");
         LoadImage("BackGround", "./Background/Background.png");
+        LoadImage("BackGround1", "./Background/Background1.png");
     }
     private static ResourceMgr m_inst = new ResourceMgr();
     public static ResourceMgr GetInst() {return m_inst;}
