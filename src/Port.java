@@ -59,7 +59,7 @@ public class Port extends JLabel
         }
         m_vFianlPos.x = m_vPos.x;
         m_vFianlPos.y = m_vPos.y;
-        m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Port");
+        m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red_Small");
         m_image = m_imageIcon.getImage();
         m_iWidth = m_imageIcon.getIconWidth();
         m_iHeight = m_imageIcon.getIconHeight();  
@@ -105,16 +105,26 @@ public class Port extends JLabel
     public void RenderinGate(Graphics g) 
     {
         g.drawImage(m_image, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y - m_iHeight/2, null);
-        if(m_ePortType.equals(PORT_TYPE.OUTPUT)&&true == m_bSetInput)
+        if(true == m_bSetInput)
         {
             ImageIcon resultImageIcon=null;
             if(m_iNumOfInput==0)
-                resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
+                resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue_Small");
             else
-                resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
+                resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue_Small");
             Image resultImage = resultImageIcon.getImage();
-            g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight*3, null);
+            g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight/2, null);
         }
+        //if(m_ePortType.equals(PORT_TYPE.OUTPUT)&&true == m_bSetInput)
+        //{
+            //ImageIcon resultImageIcon=null;
+            //if(m_iNumOfInput==0)
+                //resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
+            //else
+                //resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
+            //Image resultImage = resultImageIcon.getImage();
+            //g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight*3, null);
+        //}
     }
 
     public Port IsMouseOn(int x,int y)

@@ -23,11 +23,14 @@ public class ResourceMgr
         LoadImage("INVERTER","./Logic Gate/INVERTER.png");
         LoadImage("BUFFER","./Logic Gate/BUFFER.png");
         LoadImage("Result0_Blue","./Logic Gate/Result0_Blue.png");
+        LoadImage("Result0_Blue_Small","./Logic Gate/Result0_Blue_Small.png");
         LoadImage("Result0_Red","./Logic Gate/Result0_Red.png");
+        LoadImage("Result0_Red_Small","./Logic Gate/Result0_Red_Small.png");
         LoadImage("INPUT","./Logic Gate/Result0_Red.png");
         LoadImage("OUTPUT","./Logic Gate/Result0_Red.png");
         LoadImage("Result1_Blue","./Logic Gate/Result1_Blue.png");
         LoadImage("Result1_Red","./Logic Gate/Result1_Red.png");
+        LoadImage("Result1_Blue_Small","./Logic Gate/Result1_Blue_Small.png");
         LoadImage("Port","./Logic Gate/Port.png");
         LoadImage("BackGround", "./Background/Background.png");
         LoadImage("BackGround1", "./Background/Background1.png");
