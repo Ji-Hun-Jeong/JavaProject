@@ -187,9 +187,12 @@ public class MainPanel extends MyPanel
         g.drawImage(m_backGroundImage, 0, 0,null);
         Vec2 camera = Camera.GetInst().GetCameraPos();
 
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,0));
+        g2d.setColor(Color.RED);
         for(Line line : m_vecLines)
         {
-            line.Render(g);
+            line.Render(g2d);
         }
         for(Gate gate : m_vecGates)
         {
@@ -211,8 +214,7 @@ public class MainPanel extends MyPanel
         if(imageIcon!=null)
         {
             Image image= imageIcon.getImage();
-            Graphics2D g2 = (Graphics2D)g;
-            g2.setComposite(m_alphaChanel);
+            g2d.setComposite(m_alphaChanel);
             int posX = m_vCurPos.x - camera.x - imageIcon.getIconWidth()/2;
             int posY = m_vCurPos.y - camera.y - imageIcon.getIconHeight()/2;
             g.drawImage(image, posX, posY, imageIcon.getIconWidth(),imageIcon.getIconHeight(),null);
