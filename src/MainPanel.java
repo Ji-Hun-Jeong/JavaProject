@@ -430,7 +430,7 @@ public class MainPanel extends MyPanel
             for(int i=0;i<startGateVec.size();++i)
             {
                 Gate gate = startGateVec.get(i);
-                gate.AddInput(inputPort.GetInput(),portTypeVec.get(i));
+                gate.AddInput(inputPort.GetInput(),portTypeVec.get(i),inputPort.GetCalculateSymbol());
                 if(gate.Ready())
                     q.add(gate.GetNum());
             }
@@ -451,7 +451,9 @@ public class MainPanel extends MyPanel
             OutputPort outputPort=curGate.GetOutputPort();
             if(outputPort!=null)
             {
-                outputPort.SetResult(result);
+                outputPort.SetResult(result,curGate.GetCalculateSymbol());
+                System.out.println(outputPort.GetResultFormula());
+                outputPort.Clear();
             }
             else
             {
@@ -461,7 +463,7 @@ public class MainPanel extends MyPanel
                 {
                     Gate adjGate = SearchGateNum(m_vecGates,curGateAdjVerticesVector.get(i));
 
-                    adjGate.AddInput(result,curGatePortTypeVector.get(i));
+                    adjGate.AddInput(result,curGatePortTypeVector.get(i),curGate.GetCalculateSymbol());
                     q.add(adjGate.GetNum());
                 }
             }  
@@ -473,6 +475,7 @@ public class MainPanel extends MyPanel
         m_vecInputPorts.clear();
         m_vecLines.clear();
         m_vecOutputPorts.clear();
+        InputPort.ClearCalculateSymbol();
     }
     private Gate SearchGateNum(Vector<Gate> inGatesVec, int inNum)
     {

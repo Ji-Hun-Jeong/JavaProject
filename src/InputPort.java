@@ -6,6 +6,18 @@ public class InputPort extends Port
 {
     private Vector<Gate> m_vecStartGates = new Vector<Gate>();
     private Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
+    static char ch = 'A';
+    protected char m_cCalculateSymbol = ch++;
+    public String GetCalculateSymbol()
+    {
+        String str=new String();
+        str+=m_cCalculateSymbol;
+        return str;
+    }
+    public static void ClearCalculateSymbol()
+    {
+        ch='A';
+    }
     public InputPort(int x,int y)
     {
         super(x,y);
