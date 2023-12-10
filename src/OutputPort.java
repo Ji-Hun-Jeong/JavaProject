@@ -5,7 +5,12 @@ public class OutputPort extends Port
 {
     private boolean m_bConnected = false;
     private boolean m_bReceiveResult=false;
+    private String m_strCalculateResultFormula = "F = ";
     private int m_iResult = -1;
+    public void Clear()
+    {
+        m_strCalculateResultFormula="F = ";
+    }
     public OutputPort(int x,int y)
     {
         super(x,y);
@@ -14,10 +19,15 @@ public class OutputPort extends Port
         m_iWidth = m_imageIcon.getIconWidth();
         m_iHeight = m_imageIcon.getIconHeight();
     }
-    public void SetResult(int result) 
+    public String GetResultFormula()
+    {
+        return m_strCalculateResultFormula;
+    }
+    public void SetResult(int result,String inStrCalculateResultFormula) 
     {
         m_iResult = result;
         m_bReceiveResult = true;
+        m_strCalculateResultFormula+=inStrCalculateResultFormula;
     }
 
     public int GetResult() 

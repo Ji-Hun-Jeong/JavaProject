@@ -11,6 +11,8 @@ abstract public class Gate
     protected int m_iCalculateResult = -1;
 
     protected String m_strName = "Gate";
+    protected Vector<String> m_vecSymbols = new Vector<String>();
+    protected String m_strCalculateSymbol = new String();
     protected Vec2 m_vPos = new Vec2();
     protected Vec2 m_vFinalPos = new Vec2();
     protected int m_iWidth = 0;
@@ -24,7 +26,10 @@ abstract public class Gate
     protected Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
     private OutputPort m_outputPort = null;
     abstract protected int Calculate();
-
+    public String GetCalculateSymbol()
+    {
+        return m_strCalculateSymbol;
+    }
     protected Gate(int x, int y) 
     {
         m_vPos.x = x;
@@ -133,12 +138,15 @@ abstract public class Gate
         }
     }
 
-    public void AddInput(int input, PORT_TYPE inPortTYpe) 
+    public void AddInput(int input, PORT_TYPE inPortTYpe, String inStrCalculateSymbol) 
     {
         if(Ready())
             return;
         if(!m_ioPort[inPortTYpe.ordinal()].Ready())
+        {
             m_ioPort[inPortTYpe.ordinal()].SetInput(input);
+            m_vecSymbols.add(inStrCalculateSymbol);
+        }
     }
 
     public void Clear() 
@@ -148,6 +156,8 @@ abstract public class Gate
             if(port!=null)
                 port.Clear();
         }
+        m_strCalculateSymbol=new String();
+        m_vecSymbols.clear();
     }
 
     public Vector<Integer> GetIdxVec() 
@@ -174,6 +184,19 @@ class ANDGate extends Gate
     {
         m_iCalculateResult = m_ioPort[PORT_TYPE.INPUT1.ordinal()].GetInput() & m_ioPort[PORT_TYPE.INPUT2.ordinal()].GetInput();
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        for(String symbol : m_vecSymbols)
+        {
+            String newSymbol = new String();
+            if(symbol.indexOf('+')!=-1||symbol.indexOf('^')!=-1) // 문자열에 + 기호가 있다. 그러면 괄호 치자
+            {
+                newSymbol+="(";
+                newSymbol+=symbol;
+                newSymbol+=")";
+            }
+            else
+                newSymbol = symbol;
+            m_strCalculateSymbol+=newSymbol;
+        }
         return m_iCalculateResult;
         // 입력값이 같으면 1, 다르면 0 리턴
     }
@@ -193,6 +216,13 @@ class ORGate extends Gate
     {
         m_iCalculateResult = m_ioPort[PORT_TYPE.INPUT1.ordinal()].GetInput() | m_ioPort[PORT_TYPE.INPUT2.ordinal()].GetInput();
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        for(int i=0;i<m_vecSymbols.size();++i)
+        {
+            m_strCalculateSymbol+=m_vecSymbols.get(i);
+            if(i==m_vecSymbols.size()-1)
+                continue;
+            m_strCalculateSymbol+="+";
+        }
         return m_iCalculateResult;
         // 입력값 둘 중 하나 이상 1이면 1 리턴
     }
@@ -224,6 +254,21 @@ class NANDGate extends Gate
             // AND 게이트의 결과값을 뒤집어서 리턴
         }
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        m_strCalculateSymbol = "(";
+        for(String symbol : m_vecSymbols)
+        {
+            String newSymbol = new String();
+            if(symbol.indexOf('+')!=-1||symbol.indexOf('^')!=-1) // 문자열에 + 기호가 있다. 그러면 괄호 치자
+            {
+                newSymbol+="(";
+                newSymbol+=symbol;
+                newSymbol+=")";
+            }
+            else
+                newSymbol = symbol;
+            m_strCalculateSymbol+=newSymbol;
+        }
+        m_strCalculateSymbol+=")′";
         return m_iCalculateResult;
     }
 }
@@ -254,6 +299,15 @@ class NORGate extends Gate
             // OR 게이트의 결과값을 뒤집어서 리턴
         }
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        m_strCalculateSymbol="(";
+        for(int i=0;i<m_vecSymbols.size();++i)
+        {
+            m_strCalculateSymbol+=m_vecSymbols.get(i);
+            if(i==m_vecSymbols.size()-1)
+                continue;
+            m_strCalculateSymbol+="+";
+        }
+        m_strCalculateSymbol+=")′";
         return m_iCalculateResult;
     }
 }
@@ -287,6 +341,13 @@ class XORGate extends Gate
             // 1이 한개일 때만 1 리턴
         }
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        for(int i=0;i<m_vecSymbols.size();++i)
+        {
+            m_strCalculateSymbol+=m_vecSymbols.get(i);
+            if(i==m_vecSymbols.size()-1)
+                continue;
+            m_strCalculateSymbol+="^";
+        }
         return m_iCalculateResult;
     }
 }
@@ -320,6 +381,15 @@ class XNORGate extends Gate
             // 1이 한개일 때만 1 리턴
         }
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        m_strCalculateSymbol="(";
+        for(int i=0;i<m_vecSymbols.size();++i)
+        {
+            m_strCalculateSymbol+=m_vecSymbols.get(i);
+            if(i==m_vecSymbols.size()-1)
+                continue;
+            m_strCalculateSymbol+="^";
+        }
+        m_strCalculateSymbol+=")′";
         return m_iCalculateResult;
     }
 }
@@ -341,6 +411,7 @@ class BUFFER extends Gate
     {
         m_iCalculateResult = m_ioPort[PORT_TYPE.ONEINPUT.ordinal()].GetInput();
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        m_strCalculateSymbol = m_vecSymbols.get(0);
         return m_iCalculateResult;
     }
     public boolean IsFullInputPort()
@@ -401,6 +472,10 @@ class INVERTER extends Gate
             // 입력값을 뒤집어서 리턴
         }
         m_ioPort[PORT_TYPE.OUTPUT.ordinal()].SetInput(m_iCalculateResult);
+        if(m_strCalculateSymbol.length()>1)
+            m_strCalculateSymbol = "("+m_vecSymbols.get(0)+")′";
+        else
+            m_strCalculateSymbol = m_vecSymbols+"′";
         return m_iCalculateResult;
     }
     public boolean IsFullInputPort()
