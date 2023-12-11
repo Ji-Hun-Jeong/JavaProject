@@ -50,16 +50,6 @@ public class InputPort extends Port
         }
         return false;
     }
-
-    public Port IsMouseOn(int x,int y)
-    {
-        if(m_vPos.x - m_iWidth / 2 - imageX/4<=x&&x<=m_vPos.x + m_iWidth / 2 - imageX/4&&m_vPos.y - m_iHeight / 2 - imageY/10<=y&&y<=m_vPos.y + m_iHeight / 2 - imageY/20)
-        {
-            return this;
-        }
-        return null;
-    }
-
     public Vector<Gate> GetStartGateVec() 
     {
         return m_vecStartGates;
