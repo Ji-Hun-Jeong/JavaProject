@@ -102,29 +102,21 @@ public class Port extends JLabel
         return m_iNumOfInput;
     }
 
-    public void RenderinGate(Graphics g) 
+    public void Render(Graphics g) 
     {
-        g.drawImage(m_image, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y - m_iHeight/2, null);
+        ImageIcon resultImageIcon=null;
+        Image resultImage = null;
         if(true == m_bSetInput)
         {
-            ImageIcon resultImageIcon=null;
             if(m_iNumOfInput==0)
                 resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue_Small");
             else
                 resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue_Small");
-            Image resultImage = resultImageIcon.getImage();
-            g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight/2, null);
+            resultImage = resultImageIcon.getImage();
         }
-        //if(m_ePortType.equals(PORT_TYPE.OUTPUT)&&true == m_bSetInput)
-        //{
-            //ImageIcon resultImageIcon=null;
-            //if(m_iNumOfInput==0)
-                //resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
-            //else
-                //resultImageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
-            //Image resultImage = resultImageIcon.getImage();
-            //g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight*3, null);
-        //}
+        else
+            resultImage = m_image;
+        g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight/2, null);
     }
 
     public Port IsMouseOn(int x,int y)

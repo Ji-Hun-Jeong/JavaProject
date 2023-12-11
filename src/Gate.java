@@ -99,7 +99,7 @@ abstract public class Gate
         for(Port port : m_ioPort)
         {
             if(port!=null)
-                port.RenderinGate(g);
+                port.Render(g);
         }
     }
 
