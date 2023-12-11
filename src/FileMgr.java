@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,16 +7,15 @@ import java.util.Vector;
 
 public class FileMgr 
 {
-    private String m_strAbsolutePath = "C:\\Users\\Jeong\\eclipse-workspace\\JavaProject-master\\";
+    private String m_strAbsolutePath = new File("").getAbsolutePath()+"\\";
     public void WriteFile(String relativePath, String inFormula,Vector<Integer> vecValues,Vector<Character> vecSymbols,int inResult)
     {
         try
         {
             Integer result = inResult;
             String finalPath = m_strAbsolutePath+relativePath;
-
             BufferedReader fileReader = new BufferedReader(new FileReader(finalPath));
-
+            
             String readStr = null;
             String finalStr = new String();
 
