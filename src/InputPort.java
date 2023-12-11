@@ -62,20 +62,38 @@ public class InputPort extends Port
     public void Render(Graphics g)
     {
         final Vec2 mousePos = MyMouseListener.GetInst().GetMousePos();
+        boolean mouseon = IsMouseOn(mousePos.x, mousePos.y)!=null?true:false;
         if(m_vecStartGates.isEmpty())
         {
             if(m_iNumOfInput==0)
-                m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red");
+            {
+                if(mouseon)
+                    m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red_Pushed");
+                else
+                    m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red");
+            }
             else
-                m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Red");
+            {
+                if(mouseon)
+                    m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Red_Pushed");
+                else
+                    m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Red");
+            }
+                
         }
         else
         {
             if(m_iNumOfInput==0)
-                m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
+            {
+                if(mouseon)
+                    m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue_Pushed");
+                else
+                    m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
+            }
+                
             else
             {
-                if(IsMouseOn(mousePos.x, mousePos.y)!=null)
+                if(mouseon)
                     m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Blue_Pushed");
                 else
                     m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Blue");

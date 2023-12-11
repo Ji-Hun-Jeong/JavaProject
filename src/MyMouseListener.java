@@ -47,7 +47,6 @@ public class MyMouseListener implements MouseListener, MouseMotionListener
         m_vCurPos.x=e.getX()+camera.x-8;
         m_vCurPos.y=e.getY()+camera.y-31;
         m_eMouseTYPE=MOUSE_TYPE.PRESSED;
-        System.out.println(m_vCurPos.x);
     }
     public void mouseReleased(MouseEvent e)
     {
