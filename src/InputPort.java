@@ -11,6 +11,10 @@ public class InputPort extends Port
     static char ch = 'A';
     protected char m_cCalculateSymbol = ch++;
 
+    public char GetCalculateSymbol_Char()
+    {
+        return m_cCalculateSymbol;
+    }
     public String GetCalculateSymbol()
     {
         String str=new String();

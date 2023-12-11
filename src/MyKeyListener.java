@@ -29,7 +29,6 @@ public class MyKeyListener implements KeyListener
             default:
                 break;
         }
-        System.out.println(e.getKeyCode());
     }
     public void keyReleased(KeyEvent e) { } // 키보드 뗐을 때 호출
     public void keyTyped(KeyEvent e) { } // 문자키에만 반응

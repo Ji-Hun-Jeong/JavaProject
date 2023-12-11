@@ -17,7 +17,6 @@ public class Working_Scene extends Scene
         m_container.setLayout(new BorderLayout());
 
         m_arrPanel[PANEL_TYPE.BUTTON.ordinal()] = new ButPanel();
-        m_arrPanel[PANEL_TYPE.IO.ordinal()] = new IOPanel();
         m_arrPanel[PANEL_TYPE.MAIN.ordinal()] = new MainPanel();
 
         MyMouseListener singleMouseListener = MyMouseListener.GetInst();
@@ -26,7 +25,6 @@ public class Working_Scene extends Scene
         addMouseMotionListener(singleMouseListener);
 
         m_container.add(m_arrPanel[PANEL_TYPE.BUTTON.ordinal()], BorderLayout.EAST);
-        m_container.add(m_arrPanel[PANEL_TYPE.IO.ordinal()], BorderLayout.SOUTH);
         m_container.add(m_arrPanel[PANEL_TYPE.MAIN.ordinal()], BorderLayout.CENTER);        
 
         m_container.addKeyListener(MyKeyListener.GetInst());

@@ -6,11 +6,6 @@ import java.util.Vector;
 
 import javax.swing.*;
 
-enum BUTTON_TYPE
-{
-    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, CALCULATE, LINE, INPUT, OUTPUT, CHANGE, CLEAR, END,
-}
-
 public class MainPanel extends MyPanel
 {
     private Vec2 m_vFirstPos = new Vec2();
@@ -23,6 +18,8 @@ public class MainPanel extends MyPanel
     private AlphaComposite m_alphaChanel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.5f);
     private ImageIcon m_backGroundImageIcon = null;
     private Image m_backGroundImage = null;
+
+    private boolean m_bWriteFile=false;
     public void SetMousePos(Vec2 inFirstPos,Vec2 inCurPos){m_vFirstPos=inFirstPos;m_vCurPos=inCurPos;}
     public MainPanel()
     {
@@ -132,9 +129,15 @@ public class MainPanel extends MyPanel
                     bChecked = true;
                 }           
                 break;
-            case CALCULATE:
+            case SAVEFILE:
                 bChecked=true;
                 MyBtnListener.GetInst().InitButtonType();
+                m_bWriteFile=true;
+                break;
+            case CLEARFILE:
+                bChecked=true;
+                MyBtnListener.GetInst().InitButtonType();
+                FileMgr.GetInst().ClearFile("file\\formula.txt");
                 break;
             case INPUT:
                 if(mouseType.equals(MOUSE_TYPE.RELEASED))
@@ -165,8 +168,6 @@ public class MainPanel extends MyPanel
                     bChecked=true;
                 }
                 break;
-            //case DELETE:
-                //break;
             case CLEAR:
                 Clear();
                 break;
@@ -452,7 +453,19 @@ public class MainPanel extends MyPanel
             if(outputPort!=null)
             {
                 outputPort.SetResult(result,curGate.GetCalculateSymbol());
-                System.out.println(outputPort.GetResultFormula());
+                if(m_bWriteFile)
+                {
+                    Vector<Integer> vecValues = new Vector<Integer>();
+                    Vector<Character> vecSymbols = new Vector<Character>();
+                    for(InputPort inputPort:m_vecInputPorts)
+                    {
+                        vecSymbols.add(inputPort.GetCalculateSymbol_Char());
+                        vecValues.add(inputPort.GetInput());
+                    }
+                    FileMgr.GetInst().WriteFile("file\\formula.txt", outputPort.GetResultFormula()
+                    , vecValues, vecSymbols,result);
+                    m_bWriteFile=false;
+                }
                 outputPort.Clear();
             }
             else

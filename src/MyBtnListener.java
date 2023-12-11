@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 enum BUTTON_TYPE
 {
-    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR, LINE, CALCULATE, INPUT, OUTPUT, CHANGE, DELETE, CLEAR,  END,
+    BUFFER, INVERTER, AND, OR, NAND, XOR, NOR, XNOR,  CLEAR, INPUT, OUTPUT, CHANGE, SAVEFILE,CLEARFILE ,LINE,  END,
 }
 public class MyBtnListener implements ActionListener
 {
@@ -42,8 +42,11 @@ public class MyBtnListener implements ActionListener
             case "LINE":
                 m_eButtonType = BUTTON_TYPE.LINE;
                 break;
-            case "CALCULATE":
-                m_eButtonType = BUTTON_TYPE.CALCULATE;
+            case "SAVEFILE":
+                m_eButtonType = BUTTON_TYPE.SAVEFILE;
+                break;
+            case "CLEARFILE":
+                m_eButtonType = BUTTON_TYPE.CLEARFILE;
                 break;
             case "INPUT":
                 m_eButtonType = BUTTON_TYPE.INPUT;
@@ -54,9 +57,6 @@ public class MyBtnListener implements ActionListener
             case "CHANGE":
                 m_eButtonType = BUTTON_TYPE.CHANGE;
                 break;
-            //case "DELETE":
-                //m_eButtonType = BUTTON_TYPE.DELETE;
-                //break;
             case "CLEAR":
                 m_eButtonType = BUTTON_TYPE.CLEAR;
                 break;
