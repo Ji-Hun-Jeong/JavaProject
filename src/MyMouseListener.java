@@ -28,6 +28,10 @@ public class MyMouseListener implements MouseListener, MouseMotionListener
     private MOUSE_TYPE m_eMouseTYPE = MOUSE_TYPE.END;
     public MOUSE_TYPE GetCheckMouseType(){return m_eMouseTYPE;}
     public void InitMouse(){m_eMouseTYPE = MOUSE_TYPE.END;}
+    public Vec2 GetMousePos()
+    {
+        return m_vCurPos.Copy();
+    }
     public void SetMainPanel(JPanel inPanel)
     {
         m_mainPanel = (MainPanel)inPanel;

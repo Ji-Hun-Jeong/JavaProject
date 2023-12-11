@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 public class InputPort extends Port
 {
@@ -8,6 +10,7 @@ public class InputPort extends Port
     private Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
     static char ch = 'A';
     protected char m_cCalculateSymbol = ch++;
+
     public String GetCalculateSymbol()
     {
         String str=new String();
@@ -47,7 +50,6 @@ public class InputPort extends Port
         }
         return false;
     }
-
     public Vector<Gate> GetStartGateVec() 
     {
         return m_vecStartGates;
@@ -59,6 +61,7 @@ public class InputPort extends Port
 
     public void Render(Graphics g)
     {
+        final Vec2 mousePos = MyMouseListener.GetInst().GetMousePos();
         if(m_vecStartGates.isEmpty())
         {
             if(m_iNumOfInput==0)
@@ -71,7 +74,12 @@ public class InputPort extends Port
             if(m_iNumOfInput==0)
                 m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Blue");
             else
-                m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
+            {
+                if(IsMouseOn(mousePos.x, mousePos.y)!=null)
+                    m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Blue_Pushed");
+                else
+                    m_imageIcon=ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
+            }    
         }
         m_image = m_imageIcon.getImage();
         g.drawImage(m_image, m_vFianlPos.x-m_iWidth / 2, m_vFianlPos.y-m_iHeight / 2, null);
