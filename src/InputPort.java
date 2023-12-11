@@ -8,8 +8,6 @@ public class InputPort extends Port
 {
     private Vector<Gate> m_vecStartGates = new Vector<Gate>();
     private Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
-    private ImageIcon m_pushedImageIcon = null;
-    private ImageIcon m_idleImageIcon = null;
     static char ch = 'A';
     protected char m_cCalculateSymbol = ch++;
 
