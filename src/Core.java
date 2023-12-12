@@ -33,6 +33,7 @@ public class Core extends Thread
     }
     public void Init()
     {
+        AudioMgr.GetInst().Init();
         ResourceMgr.GetInst().Init();
         SceneMgr.GetInst().Init();
     }

@@ -8,6 +8,7 @@ public class InputPort extends Port
 {
     private Vector<Gate> m_vecStartGates = new Vector<Gate>();
     private Vector<PORT_TYPE> m_vecPortTypes = new Vector<PORT_TYPE>();
+    private boolean m_bPlayAudio = false;
     static char ch = 'A';
     protected char m_cCalculateSymbol = ch++;
 
@@ -105,5 +106,20 @@ public class InputPort extends Port
         }
         m_image = m_imageIcon.getImage();
         g.drawImage(m_image, m_vFianlPos.x-m_iWidth / 2, m_vFianlPos.y-m_iHeight / 2, null);
+        if(mouseon&&!m_bPlayAudio)
+        {
+            m_bPlayAudio=true;
+            AudioMgr.GetInst().Play("Sound\\Beep.wav");
+        }
+        else if(!mouseon&&m_bPlayAudio)
+            m_bPlayAudio=false;
+    }
+    public Port IsMouseOn(int x,int y)
+    {
+        if(m_vPos.x - m_iWidth / 2 - imageX/4<=x&&x<=m_vPos.x + m_iWidth / 2 - imageX/4&&m_vPos.y - m_iHeight / 2 - imageY/10<=y&&y<=m_vPos.y + m_iHeight / 2 - imageY/20)
+        {
+            return this;
+        }
+        return null;
     }
 }

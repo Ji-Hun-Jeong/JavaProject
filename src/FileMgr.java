@@ -51,7 +51,7 @@ public class FileMgr
             System.err.println("입출력 오류");
         }
     }
-
+    public String GetAbsolutePath(){return m_strAbsolutePath;}
     private static FileMgr m_inst = new FileMgr();
     private FileMgr(){}
     public static FileMgr GetInst(){return m_inst;}
