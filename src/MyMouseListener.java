@@ -57,7 +57,6 @@ public class MyMouseListener implements MouseListener, MouseMotionListener
         m_eMouseTYPE=MOUSE_TYPE.RELEASED;
         m_vCurPos.x=e.getX()+camera.x-8;
         m_vCurPos.y=e.getY()+camera.y-31;
-        AudioMgr.GetInst().Play("Sound\\Beep.wav");
     }
     public void mouseDragged(MouseEvent e)
     {

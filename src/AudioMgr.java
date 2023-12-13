@@ -19,8 +19,7 @@ public class AudioMgr
     }
     public void Play(String inRelativePath)
     {
-        if(m_bIsPlaying)
-            return;
+
         String finalPath = FileMgr.GetInst().GetAbsolutePath()+inRelativePath;     
         try
         {
