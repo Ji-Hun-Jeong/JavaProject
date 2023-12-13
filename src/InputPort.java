@@ -29,6 +29,7 @@ public class InputPort extends Port
     public InputPort(int x,int y)
     {
         super(x,y);
+        AudioMgr.GetInst().Play("Sound\\InputPort.wav");
         m_bSetInput = true;
         m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red");
         m_image = m_imageIcon.getImage();
@@ -38,6 +39,7 @@ public class InputPort extends Port
 
     public void ChangeNum()
     {
+        AudioMgr.GetInst().Play("Sound\\Beep.wav");
         if(0==m_iNumOfInput)
             m_iNumOfInput = 1;
         else
@@ -106,20 +108,6 @@ public class InputPort extends Port
         }
         m_image = m_imageIcon.getImage();
         g.drawImage(m_image, m_vFianlPos.x-m_iWidth / 2, m_vFianlPos.y-m_iHeight / 2, null);
-        if(mouseon&&!m_bPlayAudio)
-        {
-            m_bPlayAudio=true;
-            AudioMgr.GetInst().Play("Sound\\Beep.wav");
-        }
-        else if(!mouseon&&m_bPlayAudio)
-            m_bPlayAudio=false;
-    }
-    public Port IsMouseOn(int x,int y)
-    {
-        if(m_vPos.x - m_iWidth / 2 - imageX/4<=x&&x<=m_vPos.x + m_iWidth / 2 - imageX/4&&m_vPos.y - m_iHeight / 2 - imageY/10<=y&&y<=m_vPos.y + m_iHeight / 2 - imageY/20)
-        {
-            return this;
-        }
-        return null;
+        
     }
 }

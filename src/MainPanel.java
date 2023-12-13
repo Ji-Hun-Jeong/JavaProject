@@ -128,14 +128,21 @@ public class MainPanel extends MyPanel
                     CreateLine();
                     bChecked = true;
                 }           
+                else if(mouseType.equals((MOUSE_TYPE.PRESSED)))
+                {
+                    AudioMgr.GetInst().Play("Sound\\Pressed.wav");
+                    bChecked = true;
+                }
                 break;
             case SAVEFILE:
                 bChecked=true;
                 MyBtnListener.GetInst().InitButtonType();
+                AudioMgr.GetInst().Play("Sound\\Cash register.wav");
                 m_bWriteFile=true;
                 break;
             case CLEARFILE:
                 bChecked=true;
+                AudioMgr.GetInst().Play("Sound\\Clear.wav");
                 MyBtnListener.GetInst().InitButtonType();
                 FileMgr.GetInst().ClearFile("file\\formula.txt");
                 break;
@@ -169,6 +176,8 @@ public class MainPanel extends MyPanel
                 }
                 break;
             case CLEAR:
+                AudioMgr.GetInst().Play("Sound\\Clear.wav");
+                MyBtnListener.GetInst().InitButtonType();
                 Clear();
                 break;
             default:

@@ -36,6 +36,7 @@ abstract public class Gate
         m_vPos.y = y;
         m_vFinalPos.x = m_vPos.x;
         m_vFinalPos.y = m_vPos.y;
+        AudioMgr.GetInst().Play("Sound\\Gate.wav");
     }
     protected void Init()
     {
@@ -524,6 +525,7 @@ class Line
         int g = (int)(Math.random()*300)%200;
         int b = (int)(Math.random()*300)%200;
         color = new Color(r,g,b);
+        AudioMgr.GetInst().Play("Sound\\Release.wav");
     }
     public void FinalUpdate()
     {
