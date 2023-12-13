@@ -15,7 +15,7 @@ public class Port extends JLabel
     protected int m_iOffsetX = 10;
     protected int m_iOffsetY = 8;
     protected Vec2 m_vPos = new Vec2();
-    protected Vec2 m_vFianlPos = new Vec2();
+    protected Vec2 m_vFinalPos = new Vec2();
     protected int m_iWidth = 0;
     protected int m_iHeight = 0;
 
@@ -27,8 +27,8 @@ public class Port extends JLabel
     {
         m_vPos.x = x;
         m_vPos.y = y;
-        m_vFianlPos.x = m_vPos.x;
-        m_vFianlPos.y = m_vPos.y;
+        m_vFinalPos.x = m_vPos.x;
+        m_vFinalPos.y = m_vPos.y;
         m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Port");
         m_image = m_imageIcon.getImage();
         m_iWidth = m_imageIcon.getIconWidth();
@@ -57,8 +57,8 @@ public class Port extends JLabel
             m_vPos.x = gateX + gateSizeX / 2 - m_iOffsetX;
             m_vPos.y = gateY;
         }
-        m_vFianlPos.x = m_vPos.x;
-        m_vFianlPos.y = m_vPos.y;
+        m_vFinalPos.x = m_vPos.x;
+        m_vFinalPos.y = m_vPos.y;
         m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result0_Red_Small");
         m_image = m_imageIcon.getImage();
         m_iWidth = m_imageIcon.getIconWidth();
@@ -67,8 +67,8 @@ public class Port extends JLabel
     public void FinalUpdate()
     {
         Vec2 camera = Camera.GetInst().GetCameraPos();
-        m_vFianlPos.x = m_vPos.x-camera.x;
-        m_vFianlPos.y = m_vPos.y-camera.y;
+        m_vFinalPos.x = m_vPos.x-camera.x;
+        m_vFinalPos.y = m_vPos.y-camera.y;
     }
     public void SetLinked(){m_bLinked=true;}
     public boolean IsLinked(){return m_bLinked;}
@@ -116,7 +116,7 @@ public class Port extends JLabel
         }
         else
             resultImage = m_image;
-        g.drawImage(resultImage, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y-m_iHeight/2, null);
+        g.drawImage(resultImage, m_vFinalPos.x - m_iWidth/2, m_vFinalPos.y-m_iHeight/2, null);
     }
 
     public Port IsMouseOn(int x,int y)

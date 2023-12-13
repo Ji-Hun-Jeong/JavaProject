@@ -30,7 +30,6 @@ public class Working_Scene extends Scene
         m_container.addKeyListener(MyKeyListener.GetInst());
         m_container.setFocusable(true);
         m_container.requestFocus();
-
         setSize(1000, 600);
         setVisible(true);
     }

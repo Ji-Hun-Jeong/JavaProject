@@ -107,7 +107,7 @@ public class InputPort extends Port
             }    
         }
         m_image = m_imageIcon.getImage();
-        g.drawImage(m_image, m_vFianlPos.x-m_iWidth / 2, m_vFianlPos.y-m_iHeight / 2, null);
+        g.drawImage(m_image, m_vFinalPos.x-m_iWidth / 2, m_vFinalPos.y-m_iHeight / 2, null);
         
     }
 }

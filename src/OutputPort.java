@@ -60,6 +60,13 @@ public class OutputPort extends Port
                 m_imageIcon = ResourceMgr.GetInst().GetImageIcon("Result1_Blue");
         }
         m_image = m_imageIcon.getImage();
-        g.drawImage(m_image, m_vFianlPos.x - m_iWidth/2, m_vFianlPos.y - m_iHeight/2, null);
+        if(0<=m_vFinalPos.x&&m_vFinalPos.x<=678&&0<=m_vFinalPos.y&&m_vFinalPos.y<=600)
+            g.drawImage(m_image, m_vFinalPos.x - m_iWidth/2, m_vFinalPos.y - m_iHeight/2, null);
+        else if(0<=m_vFinalPos.y&&m_vFinalPos.y<=600)
+            g.drawImage(m_image, 660-m_imageIcon.getIconWidth(), m_vFinalPos.y - m_iHeight/2, null);
+        else if(m_vFinalPos.y<0)
+            g.drawImage(m_image, 660-m_imageIcon.getIconWidth(), 0, null);
+        else
+            g.drawImage(m_image, 660-m_imageIcon.getIconWidth(), 565-m_imageIcon.getIconHeight(), null);
     }
 }

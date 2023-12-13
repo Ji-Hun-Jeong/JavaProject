@@ -405,7 +405,7 @@ public class MainPanel extends MyPanel
                 PORT_TYPE type2 = secondPort.GetPortType();
                 if(firstPort.IsLinked())
                     return;
-                if(type2.equals(PORT_TYPE.OUTPUT)&&(type1.equals(PORT_TYPE.INPUT1)||type1.equals(PORT_TYPE.INPUT2)||type2.equals(PORT_TYPE.ONEINPUT)))
+                if(type2.equals(PORT_TYPE.OUTPUT)&&(type1.equals(PORT_TYPE.INPUT1)||type1.equals(PORT_TYPE.INPUT2)||type1.equals(PORT_TYPE.ONEINPUT)))
                     secondGate.Link(firstGate,firstPort);
                 else
                     return;
